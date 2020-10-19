@@ -60,14 +60,13 @@
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl-api &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>javax.servlet.jsp.jstl</groupId>-->
-<!--            <artifactId>jstl-api</artifactId>-->
-<!--            <version>1.2</version>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/jstl/jstl &ndash;&gt;-->
+        <!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.5.1</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>

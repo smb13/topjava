@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.util;
 
+import ru.javawebinar.topjava.dao.MealDao;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.model.MealTo;
 
@@ -42,7 +43,7 @@ public class MealsUtil {
     }
 
     private static MealTo createTo(Meal meal, boolean excess) {
-        return new MealTo(meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
+        return new MealTo(meal.getId(), meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
     }
 
     public static List<Meal> getMealList() {
@@ -65,6 +66,16 @@ public class MealsUtil {
         return meals.stream()
                 .map(meal -> createTo(meal, caloriesSumByDate.get(meal.getDate()) > caloriesPerDay))
                 .collect(Collectors.toList());
+    }
+
+    public static void fillDb(MealDao dao) {
+        dao.addMeal(new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500));
+        dao.addMeal(new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 13, 0), "Обед", 1000));
+        dao.addMeal(new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 20, 0), "Ужин", 500));
+        dao.addMeal(new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 0, 0), "Еда на граничное значение", 100));
+        dao.addMeal(new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 10, 0), "Завтрак", 1000));
+        dao.addMeal(new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 13, 0), "Обед", 500));
+        dao.addMeal(new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин", 410));
     }
 
 }
