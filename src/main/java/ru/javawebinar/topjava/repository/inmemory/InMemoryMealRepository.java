@@ -22,7 +22,9 @@ public class InMemoryMealRepository implements MealRepository {
 
     {
         for (Meal meal : MealsUtil.meals) {
-            repository.put(counter.incrementAndGet(), meal);
+            int id = counter.incrementAndGet();
+            repository.put(id, meal);
+            meal.setId(id);
         }
         counter.set(repository.size() + 1);
     }

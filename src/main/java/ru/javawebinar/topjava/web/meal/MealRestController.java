@@ -8,7 +8,7 @@ import java.util.List;
 
 @Controller
 public class MealRestController extends  AbstractMealController {
-    
+
     @Override
     public List<MealTo> getAll() {
         return super.getAll();
