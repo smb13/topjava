@@ -18,6 +18,7 @@ public class AbstractMealController {
 
     @Autowired
     private MealService service;
+    @Autowired
     private UserService userService;
 
     public List<MealTo> getAll() {
