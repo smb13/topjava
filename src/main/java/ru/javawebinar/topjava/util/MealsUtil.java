@@ -27,7 +27,7 @@ public class MealsUtil {
     public static List<MealTo> getTosSortedByDateDesc(Collection<Meal> meals, int caloriesPerDay) {
         List<MealTo> mealsNotSorted = getTos(meals, caloriesPerDay);
         return mealsNotSorted.stream()
-                .sorted(Comparator.comparing(MealTo::getDateTime))
+                .sorted(Comparator.comparing(MealTo::getDateTime).reversed())
                 .collect(Collectors.toList());
     }
 
