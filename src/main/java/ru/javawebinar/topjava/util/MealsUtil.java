@@ -57,12 +57,16 @@ public class MealsUtil {
     }
 
     public static List<MealTo> tosFilterByDateAndTime(List<MealTo> mealsTo, String dateFromStr, String dateTillStr, String timeFromStr, String timeTillStr) {
-        LocalDate dateFrom = dateFromStr != "" ? LocalDate.parse(dateFromStr) : LocalDate.MIN;
-        LocalDate dateTill = dateTillStr != "" ? LocalDate.parse(dateTillStr) : LocalDate.MAX;
-        LocalTime timeFrom = timeFromStr != "" ? LocalTime.parse(timeFromStr) : LocalTime.MIN;
-        LocalTime timeTill = timeTillStr != "" ? LocalTime.parse(timeTillStr) : LocalTime.MAX;
+        LocalDate dateFrom = !dateFromStr.equals("") ? LocalDate.parse(dateFromStr) : LocalDate.MIN;
+        LocalDate dateTill = !dateTillStr.equals("") ? LocalDate.parse(dateTillStr) : LocalDate.MAX;
+        LocalTime timeFrom = !timeFromStr.equals("") ? LocalTime.parse(timeFromStr) : LocalTime.MIN;
+        LocalTime timeTill = !timeTillStr.equals("") ? LocalTime.parse(timeTillStr) : LocalTime.MAX;
         return mealsTo.stream()
-                .filter(mealTo -> ((((mealTo.getDateTime().toLocalDate().compareTo(dateFrom) >= 0) && (mealTo.getDateTime().toLocalDate().compareTo(dateTill) <= 0) && (mealTo.getDateTime().toLocalTime().compareTo(timeFrom) >= 0) &&(mealTo.getDateTime().toLocalTime().compareTo(timeTill) < 0)))))
+                .filter(mealTo -> ((((
+                        mealTo.getDateTime().toLocalDate().compareTo(dateFrom) >= 0)
+                        && (mealTo.getDateTime().toLocalDate().compareTo(dateTill) <= 0)
+                        && (mealTo.getDateTime().toLocalTime().compareTo(timeFrom) >= 0)
+                        && (mealTo.getDateTime().toLocalTime().compareTo(timeTill) < 0)))))
                 .collect(Collectors.toList());
     }
 }
