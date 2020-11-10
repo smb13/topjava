@@ -55,4 +55,14 @@ public class MealsUtil {
     private static MealTo createTo(Meal meal, boolean excess) {
         return new MealTo(meal.getId(), meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
     }
+
+    public static List<MealTo> tosFilterByDateAndTime(List<MealTo> mealsTo, String dateFromStr, String dateTillStr, String timeFromStr, String timeTillStr) {
+        LocalDate dateFrom = dateFromStr != "" ? LocalDate.parse(dateFromStr) : LocalDate.MIN;
+        LocalDate dateTill = dateTillStr != "" ? LocalDate.parse(dateTillStr) : LocalDate.MAX;
+        LocalTime timeFrom = timeFromStr != "" ? LocalTime.parse(timeFromStr) : LocalTime.MIN;
+        LocalTime timeTill = timeTillStr != "" ? LocalTime.parse(timeTillStr) : LocalTime.MAX;
+        return mealsTo.stream()
+                .filter(mealTo -> ((((mealTo.getDateTime().toLocalDate().compareTo(dateFrom) >= 0) && (mealTo.getDateTime().toLocalDate().compareTo(dateTill) <= 0) && (mealTo.getDateTime().toLocalTime().compareTo(timeFrom) >= 0) &&(mealTo.getDateTime().toLocalTime().compareTo(timeTill) < 0)))))
+                .collect(Collectors.toList());
+    }
 }

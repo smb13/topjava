@@ -17,10 +17,39 @@
     </style>
 </head>
 <body>
+<h3><a href="index.html">Home</a></h3>
 <section>
-    <h3><a href="index.html">Home</a></h3>
     <hr/>
     <h2>Meals</h2>
+
+    <h3>Filter</h3>
+    <style>
+        input {
+            display:inline;
+        }
+    </style>
+    <form method="get" action="meals">
+        <input type="hidden" name="action" value="filter">
+        <%--        <b>Дата с (включая):</b><input type="date" value="" name="dateFrom">--%>
+        <%--        <b>Дата по (включая):</b><input type="date" value="" name="dateTill">--%>
+        <%--        <b>Время с (включая):</b><input type="time" value="" name="timeFrom">--%>
+        <%--        <b>Время по (исключая):</b><input type="time" value="" name="timeTill">--%>
+        <dl>
+            <b>Дата с (включая):</b>
+            <b>Дата по (включая):</b>
+            <b>Время с (включая):</b>
+            <b>Время по (исключая):</b>
+        </dl>
+        <dl>
+            <input type="date" value="" name="dateFrom">
+            <input type="date" value="" name="dateTill">
+            <input type="time" value="" name="timeFrom">
+            <input type="time" value="" name="timeTill">
+        </dl>
+        <p>
+            <button type="submit">Filter</button>
+        </p>
+    </form>
     <a href="meals?action=create">Add Meal</a>
     <br><br>
     <table border="1" cellpadding="8" cellspacing="0">

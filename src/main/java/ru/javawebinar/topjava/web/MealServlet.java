@@ -75,6 +75,14 @@ public class MealServlet extends HttpServlet {
                 request.setAttribute("meal", meal);
                 request.getRequestDispatcher("/mealForm.jsp").forward(request, response);
                 break;
+            case "filter":
+                log.info("filter");
+                String dateFromStr = request.getParameter("dateFrom");
+                String dateTillStr = request.getParameter("dateTill");
+                String timeFromStr = request.getParameter("timeFrom");
+                String timeTillStr = request.getParameter("timeTill");
+                request.setAttribute("meals", MealsUtil.tosFilterByDateAndTime(mealRestController.getAll(), dateFromStr, dateTillStr, timeFromStr, timeTillStr));
+                request.getRequestDispatcher("/meals.jsp").forward(request, response);
             case "all":
             default:
                 log.info("getAll");
